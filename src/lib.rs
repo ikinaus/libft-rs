@@ -13,6 +13,11 @@ pub fn ft_isalnum(c: u8) -> bool {
 pub fn ft_isascii(c: u8) -> bool {
 	matches!(c, 0..128)
 }
+
+pub fn ft_isprint(c: u8) -> bool {
+	matches!(c, 32..=126)
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -42,6 +47,13 @@ mod tests {
 	fn test_isascii() {
 		for c in 0..=255u8 {
 			assert_eq!(ft_isascii(c), c.is_ascii());
+		}
+	}
+
+	#[test]
+	fn test_isprint() {
+		for c in 0..=255u8 {
+			assert_eq!(ft_isprint(c), c.is_ascii_graphic() || c == b' ');
 		}
 	}
 }
