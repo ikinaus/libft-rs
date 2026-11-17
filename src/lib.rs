@@ -27,7 +27,7 @@ pub fn ft_toupper(c: u8) -> u8 {
 }
 
 pub fn ft_tolower(c: u8) -> u8 {
-	if matches!(c, b'a'..=b'z') {
+	if matches!(c, b'A'..=b'Z') {
 		c - b'A' + b'a'
 	} else {
 		c
