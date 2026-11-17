@@ -34,6 +34,14 @@ pub fn ft_tolower(c: u8) -> u8 {
 	}
 }
 
+pub fn ft_strlen(s: &[u8]) -> usize {
+	let mut i: usize = 0;
+	while (i < s.len()) && (s[i] != b'\0') {
+		i += 1;
+	}
+	i
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -85,5 +93,13 @@ mod tests {
 		for c in 0..=255u8 {
 			assert_eq!(ft_tolower(c), c.to_ascii_lowercase());
 		}
+	}
+
+	#[test]
+	fn test_strlen() {
+		assert_eq!(ft_strlen(b"hello"), 5);
+		assert_eq!(ft_strlen(b"hi\0xy"), 2);
+		assert_eq!(ft_strlen(b""), 0);
+		assert_eq!(ft_strlen(b"\0"), 0);
 	}
 }
