@@ -26,6 +26,14 @@ pub fn ft_toupper(c: u8) -> u8 {
 	}
 }
 
+pub fn ft_tolower(c: u8) -> u8 {
+	if matches!(c, b'a'..=b'z') {
+		c - b'A' + b'a'
+	} else {
+		c
+	}
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -69,6 +77,13 @@ mod tests {
 	fn test_toupper() {
 		for c in 0..=255u8 {
 			assert_eq!(ft_toupper(c), c.to_ascii_uppercase());
+		}
+	}
+
+	#[test]
+	fn test_tolower() {
+		for c in 0..=255u8 {
+			assert_eq!(ft_tolower(c), c.to_ascii_lowercase());
 		}
 	}
 }
