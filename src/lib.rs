@@ -6,6 +6,10 @@ pub fn ft_isdigit(c: u8) -> bool {
 	matches!(c, b'0'..=b'9')
 }
 
+pub fn ft_isalnum(c: u8) -> bool {
+	ft_isalpha(c) || ft_isdigit(c)
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -21,6 +25,13 @@ mod tests {
 	fn test_isdigit() {
 		for c in 0..=255u8 {
 			assert_eq!(ft_isdigit(c), c.is_ascii_digit());
+		}
+	}
+
+	#[test]
+	fn test_isalnum() {
+		for c in 0..=255u8 {
+			assert_eq!(ft_isalnum(c), c.is_ascii_alphanumeric());
 		}
 	}
 }
