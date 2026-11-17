@@ -18,6 +18,14 @@ pub fn ft_isprint(c: u8) -> bool {
 	matches!(c, 32..=126)
 }
 
+pub fn ft_toupper(c: u8) -> u8 {
+	if matches!(c, b'a'..=b'z') {
+		c - b'a' + b'A'
+	} else {
+		c
+	}
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -54,6 +62,13 @@ mod tests {
 	fn test_isprint() {
 		for c in 0..=255u8 {
 			assert_eq!(ft_isprint(c), c.is_ascii_graphic() || c == b' ');
+		}
+	}
+
+	#[test]
+	fn test_toupper() {
+		for c in 0..=255u8 {
+			assert_eq!(ft_toupper(c), c.to_ascii_uppercase());
 		}
 	}
 }
