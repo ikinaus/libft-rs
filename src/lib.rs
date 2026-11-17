@@ -42,6 +42,14 @@ pub fn ft_strlen(s: &[u8]) -> usize {
 	i
 }
 
+pub fn ft_memset(s: &mut [u8], c: u8) {
+	let mut i: usize = 0;
+	while i < s.len() {
+		s[i] = c;
+		i += 1;
+	}
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -101,5 +109,18 @@ mod tests {
 		assert_eq!(ft_strlen(b"hi\0xy"), 2);
 		assert_eq!(ft_strlen(b""), 0);
 		assert_eq!(ft_strlen(b"\0"), 0);
+	}
+
+	#[test]
+	fn test_memset() {
+		let mut buf = [0u8; 5];
+		ft_memset(&mut buf, b'x');
+		assert_eq!(buf, [b'x'; 5]);
+		buf = [0; 5];
+		ft_memset(&mut buf[1..3], b'x');
+		assert_eq!(buf, [0, b'x', b'x', 0, 0]);
+		buf = [0; 5];
+		ft_memset(&mut buf[..0], b'x');
+		assert_eq!(buf, [0; 5]);
 	}
 }
