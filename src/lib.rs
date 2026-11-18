@@ -50,6 +50,10 @@ pub fn ft_memset(s: &mut [u8], c: u8) {
 	}
 }
 
+pub fn ft_bzero(s: &mut [u8]) {
+	ft_memset(s, 0);
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -121,6 +125,13 @@ mod tests {
 		assert_eq!(buf, [0, b'x', b'x', 0, 0]);
 		buf = [0; 5];
 		ft_memset(&mut buf[..0], b'x');
+		assert_eq!(buf, [0; 5]);
+	}
+
+	#[test]
+	fn test_bzero() {
+		let mut buf = [1u8; 5];
+		ft_bzero(&mut buf);
 		assert_eq!(buf, [0; 5]);
 	}
 }
