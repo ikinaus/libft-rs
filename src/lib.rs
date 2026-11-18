@@ -54,6 +54,14 @@ pub fn ft_bzero(s: &mut [u8]) {
 	ft_memset(s, 0);
 }
 
+pub fn ft_memcpy(dst: &mut [u8], src: &[u8]) {
+	let mut i: usize = 0;
+	while i < src.len() {
+		dst[i] = src[i];
+		i += 1;
+	}
+}
+
 #[cfg(test)]
 mod tests {
 	use super::*;
@@ -133,5 +141,21 @@ mod tests {
 		let mut buf = [1u8; 5];
 		ft_bzero(&mut buf);
 		assert_eq!(buf, [0; 5]);
+	}
+
+	#[test]
+	fn test_memcpy() {
+		let mut dst = [0u8; 5];
+		ft_memcpy(&mut dst, b"abcde");
+		assert_eq!(dst, *b"abcde");
+		let mut dst = [0u8; 5];
+		ft_memcpy(&mut dst[1..3], b"ab");
+		assert_eq!(dst, [0, b'a', b'b', 0, 0]);
+		let mut dst = [0u8; 5];
+		ft_memcpy(&mut dst, b"");
+		assert_eq!(dst, [0u8; 5]);
+		let mut dst = [0u8; 5];
+		ft_memcpy(&mut dst, b"asdasdasdas");
+		assert_eq!(dst, [0u8; 5]);
 	}
 }
